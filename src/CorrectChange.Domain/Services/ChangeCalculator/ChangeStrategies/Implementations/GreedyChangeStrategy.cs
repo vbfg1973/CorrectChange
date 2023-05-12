@@ -1,6 +1,6 @@
 ﻿using CorrectChange.Domain.Config;
 using CorrectChange.Domain.Models;
-using CorrectChange.Domain.Services.ChangeCalculator.ChangeStrategies.Abstract;
+using CorrectChange.Domain.Services.ChangeCalculator.Abstract;
 using Microsoft.Extensions.Logging;
 
 namespace CorrectChange.Domain.Services.ChangeCalculator.ChangeStrategies.Implementations

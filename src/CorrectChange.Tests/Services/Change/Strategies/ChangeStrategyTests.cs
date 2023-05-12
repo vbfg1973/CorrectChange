@@ -1,5 +1,6 @@
 ﻿using CorrectChange.Domain.Config;
 using CorrectChange.Domain.Models;
+using CorrectChange.Domain.Services.ChangeCalculator;
 using CorrectChange.Domain.Services.ChangeCalculator.ChangeStrategies;
 using CorrectChange.Domain.Services.ChangeCalculator.ChangeStrategies.Implementations;
 using CorrectChange.Tests.Services.Change.Strategies.Data;
@@ -71,6 +72,24 @@ namespace CorrectChange.Tests.Services.Change.Strategies
             (changeValue + price)
                 .Should()
                 .Be(paymentReceived);
+        }
+
+        /// <summary>
+        /// Ensures the change strategy factory produces the correct strategy types on request
+        /// </summary>
+        /// <param name="changeStrategyType"></param>
+        /// <param name="strategyType"></param>
+        [Theory]
+        [InlineData(ChangeStrategyType.Greedy, typeof(GreedyChangeStrategy))]
+        [InlineData(ChangeStrategyType.GreedyWithPreferenceForNotes, typeof(GreedyPreferNotesChangeStrategy))]
+        public void Given_Strategy_Type_Ensure_Factory_Creates_Correct_Strategy(ChangeStrategyType changeStrategyType, Type strategyType)
+        {
+            var strategy = ChangeStrategyFactory.GetChangeStrategy(changeStrategyType, null!, new NullLoggerFactory());
+
+            strategy
+                .GetType()
+                .Should()
+                .Be(strategyType);
         }
     }
 }
