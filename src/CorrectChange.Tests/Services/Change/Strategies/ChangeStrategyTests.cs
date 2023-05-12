@@ -75,14 +75,15 @@ namespace CorrectChange.Tests.Services.Change.Strategies
         }
 
         /// <summary>
-        /// Ensures the change strategy factory produces the correct strategy types on request
+        ///     Ensures the change strategy factory produces the correct strategy types on request
         /// </summary>
         /// <param name="changeStrategyType"></param>
         /// <param name="strategyType"></param>
         [Theory]
         [InlineData(ChangeStrategyType.Greedy, typeof(GreedyChangeStrategy))]
         [InlineData(ChangeStrategyType.GreedyWithPreferenceForNotes, typeof(GreedyPreferNotesChangeStrategy))]
-        public void Given_Strategy_Type_Ensure_Factory_Creates_Correct_Strategy(ChangeStrategyType changeStrategyType, Type strategyType)
+        public void Given_Strategy_Type_Ensure_Factory_Creates_Correct_Strategy(ChangeStrategyType changeStrategyType,
+            Type strategyType)
         {
             var strategy = ChangeStrategyFactory.GetChangeStrategy(changeStrategyType, null!, new NullLoggerFactory());
 

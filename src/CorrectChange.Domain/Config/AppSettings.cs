@@ -1,8 +1,8 @@
-﻿using CorrectChange.Domain.Models;
-using CorrectChange.Domain.Services.ChangeCalculator.ChangeStrategies;
-
-namespace CorrectChange.Domain.Config
+﻿namespace CorrectChange.Domain.Config
 {
+    /// <summary>
+    ///     Standard app specific configuration object
+    /// </summary>
     public class AppSettings
     {
         /// <summary>

@@ -5,11 +5,19 @@ using Microsoft.Extensions.Logging;
 
 namespace CorrectChange.Domain.Services.ChangeCalculator.ChangeStrategies.Implementations
 {
+    /// <summary>
+    ///     The greedy strategy. Tries to give larger denominations first
+    /// </summary>
     public class GreedyChangeStrategy : IChangeStrategy
     {
         private readonly CurrencyDenominationsConfig _currencyDenominationsConfig;
         private ILogger<GreedyChangeStrategy> _logger;
 
+        /// <summary>
+        ///     ctor
+        /// </summary>
+        /// <param name="currencyDenominationsConfig"></param>
+        /// <param name="loggerFactory"></param>
         public GreedyChangeStrategy(CurrencyDenominationsConfig currencyDenominationsConfig,
             ILoggerFactory loggerFactory)
         {
@@ -17,6 +25,12 @@ namespace CorrectChange.Domain.Services.ChangeCalculator.ChangeStrategies.Implem
             _currencyDenominationsConfig = currencyDenominationsConfig;
         }
 
+        /// <summary>
+        ///     Returns the denomination quantities representing the change
+        /// </summary>
+        /// <param name="price"></param>
+        /// <param name="paymentReceived"></param>
+        /// <returns></returns>
         public IEnumerable<DenominationQuantity> CalculateChange(decimal price, decimal paymentReceived)
         {
             // Price is larger or equal to the payment received. No change forthcoming.

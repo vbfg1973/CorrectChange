@@ -6,8 +6,19 @@ using Microsoft.Extensions.Logging;
 
 namespace CorrectChange.Domain.Services.ChangeCalculator
 {
+    /// <summary>
+    ///     Factory to produce the correct IChangeStrategy
+    /// </summary>
     public static class ChangeStrategyFactory
     {
+        /// <summary>
+        ///     Retrieves an IChangeStrategy defined by ChangeStrategyType
+        /// </summary>
+        /// <param name="changeStrategyType"></param>
+        /// <param name="currencyDenominationsConfig"></param>
+        /// <param name="loggerFactory"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static IChangeStrategy GetChangeStrategy(ChangeStrategyType changeStrategyType,
             CurrencyDenominationsConfig currencyDenominationsConfig, ILoggerFactory loggerFactory)
         {
