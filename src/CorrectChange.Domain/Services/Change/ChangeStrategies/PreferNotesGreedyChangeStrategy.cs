@@ -5,19 +5,19 @@ using Microsoft.Extensions.Logging;
 
 namespace CorrectChange.Domain.Services.Change.ChangeStrategies
 {
-    public class PreferNotesChangeStrategy : IChangeStrategy
+    public class PreferNotesGreedyChangeStrategy : IChangeStrategy
     {
         private readonly CurrencyDenominationsConfig _currencyDenominationsConfig;
-        private readonly ILogger<PreferNotesChangeStrategy> _logger;
+        private readonly ILogger<PreferNotesGreedyChangeStrategy> _logger;
 
-        public PreferNotesChangeStrategy(CurrencyDenominationsConfig currencyDenominationsConfig,
+        public PreferNotesGreedyChangeStrategy(CurrencyDenominationsConfig currencyDenominationsConfig,
             ILoggerFactory loggerFactory)
         {
-            _logger = loggerFactory.CreateLogger<PreferNotesChangeStrategy>();
+            _logger = loggerFactory.CreateLogger<PreferNotesGreedyChangeStrategy>();
             _currencyDenominationsConfig = currencyDenominationsConfig;
         }
 
-        public Denomination[] CalculateChange(decimal price, decimal paymentReceived)
+        public IEnumerable<DenominationQuantity> CalculateChange(decimal price, decimal paymentReceived)
         {
             throw new NotImplementedException();
         }
