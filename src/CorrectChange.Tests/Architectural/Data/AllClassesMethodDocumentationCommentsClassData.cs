@@ -25,7 +25,7 @@ namespace CorrectChange.Tests.Architectural.Data
             var types = _assembly
                 .GetExportedTypes();
 
-            var syntacticalSugarredRecordMethods = new HashSet<string>()
+            var syntacticalSugarredRecordMethods = new HashSet<string>
             {
                 "GetHashCode", "Equals", "PrintMembers", "ToString", "<Clone>$"
             };
