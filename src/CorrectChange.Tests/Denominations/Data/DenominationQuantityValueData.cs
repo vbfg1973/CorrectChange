@@ -2,6 +2,14 @@
 
 namespace CorrectChange.Tests.Denominations.Data
 {
+    /// <summary>
+    ///     Generate data for testing DenominationQuantity calculated property
+    /// </summary>
+    /// <returns>
+    ///     Value of denomination (decimal)
+    ///     Quantity of denomination (int)
+    ///     Expected total value (decimal)
+    /// </returns>
     public class DenominationQuantityValueData : IEnumerable<object[]>
     {
         public IEnumerator<object[]> GetEnumerator()
