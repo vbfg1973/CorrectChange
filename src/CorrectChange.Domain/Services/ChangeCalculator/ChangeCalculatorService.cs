@@ -11,7 +11,7 @@ namespace CorrectChange.Domain.Services.ChangeCalculator
     /// <summary>
     ///     Calculates change for specified currency
     /// </summary>
-    public class ChangeCalculatorService : IChangeService
+    public class ChangeCalculatorService : IChangeCalculatorService
     {
         private readonly AppSettings _appSettings;
         private readonly ILogger<ChangeCalculatorService> _logger;
