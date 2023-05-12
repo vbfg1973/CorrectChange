@@ -36,8 +36,8 @@ namespace CorrectChange.Tests.Architectural.Data
                     yield return new object[]
                     {
                         type.Name,
-                        type.Namespace ?? string.Empty,
                         propertyInfo.Name,
+                        type.Namespace ?? string.Empty,
                         propertyInfo.GetDocumentation()?.Trim()!
                     };
             }

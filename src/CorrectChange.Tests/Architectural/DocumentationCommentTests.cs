@@ -37,14 +37,14 @@ namespace CorrectChange.Tests.Architectural
         /// <param name="xmlDocumentation"></param>
         [Theory]
         [ClassData(typeof(AllClassesPropertyDocumentationCommentsClassData))]
-        public void All_Class_Properties_Have_Documentation_Comments(string typeName, string ns, string propertyName,
+        public void All_Class_Properties_Have_Documentation_Comments(string typeName, string propertyName, string ns,
             string xmlDocumentation)
         {
             xmlDocumentation
                 .Should()
                 .NotBeNullOrEmpty();
         }
-        
+
         /// <summary>
         ///     Tests class methods for XML Documentation Comments
         /// </summary>
@@ -58,7 +58,7 @@ namespace CorrectChange.Tests.Architectural
         /// <param name="xmlDocumentation"></param>
         [Theory]
         [ClassData(typeof(AllClassesMethodDocumentationCommentsClassData))]
-        public void All_Class_Methods_Have_Documentation_Comments(string typeName, string ns, string methodName,
+        public void All_Class_Methods_Have_Documentation_Comments(string typeName, string methodName, string ns,
             string xmlDocumentation)
         {
             xmlDocumentation
