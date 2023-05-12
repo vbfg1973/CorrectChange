@@ -6,9 +6,16 @@ namespace CorrectChange.Tests.Denominations
 {
     public class DenominationQuantityTests
     {
+        /// <summary>
+        ///     Ensure sum of denomination quantity is correct
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="quantity"></param>
+        /// <param name="expectedValue"></param>
         [Theory]
         [ClassData(typeof(DenominationQuantityValueData))]
-        public void Given_DenominationQuantity_Calculated_Value_Is_Correct(decimal value, int quantity, decimal expectedValue)
+        public void Given_DenominationQuantity_Calculated_Value_Is_Correct(decimal value, int quantity,
+            decimal expectedValue)
         {
             var denominationQuantity = MakeDenominationQuantity(value, quantity);
 
