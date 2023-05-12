@@ -3,21 +3,22 @@
     /// <summary>
     ///     Represents the coin or note, whether it is a coin or note, and the currency denominated in
     /// </summary>
-    public sealed class Denomination
+    public sealed record Denomination
     {
         /// <summary>
         ///     The value of the denomination
         /// </summary>
-        public decimal Amount { get; set; }
+        public decimal Amount { get; init; }
 
         /// <summary>
-        ///     The type of denomination (Coin, note, etc)
+        ///     The type of denomination (Coin, note, etc). Some currencies have both notes and
+        ///     coins representing the same value
         /// </summary>
-        public DenominationType DenominationType { get; set; }
+        public DenominationType DenominationType { get; init; }
 
         /// <summary>
         ///     The currency of the denomination
         /// </summary>
-        public Currency Currency { get; set; }
+        public Currency Currency { get; init; }
     }
 }
