@@ -26,4 +26,8 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CorrectChange.Domain\CorrectChange.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
