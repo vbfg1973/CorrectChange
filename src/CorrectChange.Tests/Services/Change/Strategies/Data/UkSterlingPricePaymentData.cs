@@ -1,14 +1,14 @@
 ﻿using System.Collections;
 using CorrectChange.Domain.Config;
 
-namespace CorrectChange.Tests.Services.Data
+namespace CorrectChange.Tests.Services.Change.Strategies.Data
 {
-    public class EuroPricePaymentData : AbstractStrategyData, IEnumerable<object[]>
+    public class UkSterlingPricePaymentData : AbstractStrategyData, IEnumerable<object[]>
     {
-        private const string FileName = "EURDenominations.json";
+        private const string FileName = "GBPDenominations.json";
         private readonly CurrencyDenominationsConfig _currencyDenominationsConfig;
 
-        public EuroPricePaymentData()
+        public UkSterlingPricePaymentData()
         {
             _currencyDenominationsConfig = ReadCurrencyDenominationsConfig(FileName);
         }

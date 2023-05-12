@@ -1,9 +1,9 @@
 ﻿using CorrectChange.Domain.Config;
 using CorrectChange.Domain.Models;
-using CorrectChange.Domain.Services.Change.ChangeStrategies.Abstract;
+using CorrectChange.Domain.Services.ChangeCalculator.ChangeStrategies.Abstract;
 using Microsoft.Extensions.Logging;
 
-namespace CorrectChange.Domain.Services.Change.ChangeStrategies
+namespace CorrectChange.Domain.Services.ChangeCalculator.ChangeStrategies.Implementations
 {
     public class PreferNotesGreedyChangeStrategy : IChangeStrategy
     {

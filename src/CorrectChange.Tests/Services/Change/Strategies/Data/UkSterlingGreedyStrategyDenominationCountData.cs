@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using CorrectChange.Domain.Config;
 
-namespace CorrectChange.Tests.Services.Data
+namespace CorrectChange.Tests.Services.Change.Strategies.Data
 {
     public class UkSterlingGreedyStrategyDenominationCountData : AbstractStrategyData, IEnumerable<object[]>
     {

@@ -7,8 +7,8 @@ namespace CorrectChange.Domain.Config
     /// </summary>
     public class CurrencyDenominationsConfig
     {
-        public string CurrencyName { get; set; } = null!;
-        public Currency Currency { get; set; }
-        public HashSet<Denomination> Denominations { get; set; } = new();
+        public string CurrencyName { get; init; } = null!;
+        public Currency Currency { get; init; }
+        public HashSet<Denomination> Denominations { get; init; } = new();
     }
 }

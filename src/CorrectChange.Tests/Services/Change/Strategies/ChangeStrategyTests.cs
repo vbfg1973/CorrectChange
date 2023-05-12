@@ -1,11 +1,12 @@
 ﻿using CorrectChange.Domain.Config;
 using CorrectChange.Domain.Models;
-using CorrectChange.Domain.Services.Change.ChangeStrategies;
-using CorrectChange.Tests.Services.Data;
+using CorrectChange.Domain.Services.ChangeCalculator.ChangeStrategies;
+using CorrectChange.Domain.Services.ChangeCalculator.ChangeStrategies.Implementations;
+using CorrectChange.Tests.Services.Change.Strategies.Data;
 using FluentAssertions;
 using Microsoft.Extensions.Logging.Abstractions;
 
-namespace CorrectChange.Tests.Services
+namespace CorrectChange.Tests.Services.Change.Strategies
 {
     public class ChangeStrategyTests
     {

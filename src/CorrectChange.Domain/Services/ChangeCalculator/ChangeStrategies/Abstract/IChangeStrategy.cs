@@ -1,6 +1,6 @@
 ﻿using CorrectChange.Domain.Models;
 
-namespace CorrectChange.Domain.Services.Change.ChangeStrategies.Abstract
+namespace CorrectChange.Domain.Services.ChangeCalculator.ChangeStrategies.Abstract
 {
     public interface IChangeStrategy
     {
