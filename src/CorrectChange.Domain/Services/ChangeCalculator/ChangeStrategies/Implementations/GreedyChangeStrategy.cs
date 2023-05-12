@@ -39,8 +39,6 @@ namespace CorrectChange.Domain.Services.ChangeCalculator.ChangeStrategies.Implem
 
             var changeValueRemaining = paymentReceived - price;
 
-            Console.WriteLine(changeValueRemaining);
-
             // Make sure denominations come largest first
             foreach (var denomination in _currencyDenominationsConfig.Denominations.OrderByDescending(x => x.Value))
             {
