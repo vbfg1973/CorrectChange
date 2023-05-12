@@ -8,17 +8,12 @@
         /// <summary>
         ///     The value of the denomination
         /// </summary>
-        public decimal Amount { get; init; }
+        public decimal Value { get; init; }
 
         /// <summary>
         ///     The type of denomination (Coin, note, etc). Some currencies have both notes and
         ///     coins representing the same value
         /// </summary>
         public DenominationType DenominationType { get; init; }
-
-        /// <summary>
-        ///     The currency of the denomination
-        /// </summary>
-        public Currency Currency { get; init; }
     }
 }

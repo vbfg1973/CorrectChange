@@ -8,11 +8,9 @@ namespace CorrectChange.Tests.Denominations
     {
         [Theory]
         [ClassData(typeof(DenominationQuantityValueData))]
-        public void Given_DenominationQuantity_Calculated_Value_Is_Correct(decimal amount, int quantity,
-            Currency currency,
-            decimal expectedValue)
+        public void Given_DenominationQuantity_Calculated_Value_Is_Correct(decimal value, int quantity, decimal expectedValue)
         {
-            var denominationQuantity = MakeDenominationQuantity(amount, quantity, currency);
+            var denominationQuantity = MakeDenominationQuantity(value, quantity);
 
             denominationQuantity
                 .Value
@@ -23,18 +21,16 @@ namespace CorrectChange.Tests.Denominations
         /// <summary>
         ///     Everything's a note. Doesn't figure into the calculation
         /// </summary>
-        /// <param name="amount"></param>
+        /// <param name="value"></param>
         /// <param name="quantity"></param>
-        /// <param name="currency"></param>
         /// <returns></returns>
-        private static DenominationQuantity MakeDenominationQuantity(decimal amount, int quantity, Currency currency)
+        private static DenominationQuantity MakeDenominationQuantity(decimal value, int quantity)
         {
             return new DenominationQuantity
             {
                 Denomination = new Denomination
                 {
-                    Amount = amount,
-                    Currency = currency,
+                    Value = value,
                     DenominationType = DenominationType.Note
                 },
 

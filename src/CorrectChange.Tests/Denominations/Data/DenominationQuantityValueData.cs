@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using CorrectChange.Domain.Models;
 
 namespace CorrectChange.Tests.Denominations.Data
 {
@@ -7,33 +6,21 @@ namespace CorrectChange.Tests.Denominations.Data
     {
         public IEnumerator<object[]> GetEnumerator()
         {
-            // Amount
-            // Quantity
-            // Currency,
-            // Expected
-            yield return new object[] { 10, 1, Currency.Euro, 10 };
-            yield return new object[] { 10, 1, Currency.UnitedStatesDollar, 10 };
-            yield return new object[] { 10, 1, Currency.ChinaRenminbi, 10 };
-            yield return new object[] { 10, 1, Currency.Sterling, 10 };
-            yield return new object[] { 10, 1, Currency.AustraliaDollar, 10 };
-            
-            yield return new object[] { 10, 2, Currency.Euro, 20 };
-            yield return new object[] { 10, 2, Currency.UnitedStatesDollar, 20 };
-            yield return new object[] { 10, 2, Currency.ChinaRenminbi, 20 };
-            yield return new object[] { 10, 2, Currency.Sterling, 20 };
-            yield return new object[] { 10, 2, Currency.AustraliaDollar, 20 };
-            
-            yield return new object[] { 20, 1, Currency.Euro, 20 };
-            yield return new object[] { 20, 1, Currency.UnitedStatesDollar, 20 };
-            yield return new object[] { 20, 1, Currency.ChinaRenminbi, 20 };
-            yield return new object[] { 20, 1, Currency.Sterling, 20 };
-            yield return new object[] { 20, 1, Currency.AustraliaDollar, 20 };
-            
-            yield return new object[] { 20, 2, Currency.Euro, 40 };
-            yield return new object[] { 20, 2, Currency.UnitedStatesDollar, 40 };
-            yield return new object[] { 20, 2, Currency.ChinaRenminbi, 40 };
-            yield return new object[] { 20, 2, Currency.Sterling, 40 };
-            yield return new object[] { 20, 2, Currency.AustraliaDollar, 40 };
+            // Value, Quantity, Expected
+            yield return new object[] { 10, 1, 10 };
+            yield return new object[] { 10, 2, 20 };
+            yield return new object[] { 20, 1, 20 };
+            yield return new object[] { 20, 2, 40 };
+
+            yield return new object[] { 0.5, 1, 0.5 };
+            yield return new object[] { 0.5, 2, 1 };
+            yield return new object[] { 0.1, 10, 1 };
+            yield return new object[] { 0.01, 2, 0.02 };
+
+            yield return new object[] { 0.05, 1, 0.05 };
+            yield return new object[] { 0.05, 2, 0.1 };
+            yield return new object[] { 0.01, 10, 0.1 };
+            yield return new object[] { 0.01, 20, 0.20 };
         }
 
         IEnumerator IEnumerable.GetEnumerator()
