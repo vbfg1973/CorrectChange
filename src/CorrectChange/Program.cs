@@ -1,4 +1,4 @@
-﻿using CorrectChange.Config;
+﻿using CorrectChange.Domain.Config;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
