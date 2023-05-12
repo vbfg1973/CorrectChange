@@ -9,11 +9,11 @@ namespace CorrectChange.Tests.Architectural
         [Theory]
         [InlineData(typeof(IChangeStrategy), "ChangeStrategy")]
         [InlineData(typeof(IChangeCalculatorService), "ChangeCalculatorService")]
-        public void Interface_Implementations_Are_Properly_Named(Type interfaceName, string implementationNameEndsWith)
+        public void Interface_Implementations_Are_Properly_Named(Type interfaceType, string implementationNameEndsWith)
         {
             (Types.InCurrentDomain()
                     .That()
-                    .ImplementInterface(interfaceName)
+                    .ImplementInterface(interfaceType)
                     .Should()
                     .BeClasses()
                     .And()
