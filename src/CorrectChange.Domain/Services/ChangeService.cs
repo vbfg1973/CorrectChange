@@ -12,6 +12,18 @@ namespace CorrectChange.Domain.Services
     /// </summary>
     public class ChangeService : IChangeService
     {
+        public ChangeService()
+        {
+            
+        }
+        
+        /// <summary>
+        ///     Calculates change for the specified currency
+        /// </summary>
+        /// <param name="price"></param>
+        /// <param name="amountTendered"></param>
+        /// <param name="currency"></param>
+        /// <returns></returns>
         public IList<DenominationQuantity> CalculateChange(decimal price, decimal amountTendered, Currency currency)
         {
             throw new NotImplementedException();
