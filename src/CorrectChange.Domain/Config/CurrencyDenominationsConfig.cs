@@ -2,9 +2,13 @@
 
 namespace CorrectChange.Domain.Config
 {
+    /// <summary>
+    ///     Currency types and all their denominations
+    /// </summary>
     public class CurrencyDenominationsConfig
     {
+        public string CurrencyName { get; set; } = null!;
         public Currency Currency { get; set; }
-        public List<Denomination> Denominations { get; set; } = new();
+        public HashSet<Denomination> Denominations { get; set; } = new();
     }
 }
