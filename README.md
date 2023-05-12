@@ -10,4 +10,5 @@ Your change is: (displayed within the console)
 2 x £2
 1 x 50p
 
-
+* At least 10x unit tests
+* Scalable code (what would happen if the pound change to euro?)
