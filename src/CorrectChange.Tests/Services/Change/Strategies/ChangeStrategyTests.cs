@@ -42,7 +42,7 @@ namespace CorrectChange.Tests.Services.Change.Strategies
 
             #endregion
 
-            var strategy = new GreedyChangeStrategy(currencyDenominationsConfig);
+            var strategy = new GreedyPreferNotesChangeStrategy(currencyDenominationsConfig);
 
             var denominationQuantities = strategy.CalculateChange(price, paymentReceived).ToList();
 
@@ -79,7 +79,7 @@ namespace CorrectChange.Tests.Services.Change.Strategies
 
             #endregion
 
-            var strategy = new GreedyChangeStrategy(currencyDenominationsConfig);
+            var strategy = new GreedyPreferNotesChangeStrategy(currencyDenominationsConfig);
 
             var denominationQuantities = strategy.CalculateChange(price, paymentReceived).ToList();
 
@@ -142,12 +142,12 @@ namespace CorrectChange.Tests.Services.Change.Strategies
         /// <param name="changeStrategyType"></param>
         /// <param name="strategyType"></param>
         [Theory]
-        [InlineData(ChangeStrategyType.Greedy, typeof(GreedyChangeStrategy))]
-        [InlineData(ChangeStrategyType.GreedyWithPreferenceForNotes, typeof(GreedyChangeStrategy))]
+        [InlineData(ChangeStrategyType.GreedyNotes, typeof(GreedyPreferNotesChangeStrategy))]
+        [InlineData(ChangeStrategyType.GreedyCoins, typeof(GreedyPreferNotesChangeStrategy))]
         public void Given_Strategy_Type_Ensure_Factory_Creates_Correct_Strategy(ChangeStrategyType changeStrategyType,
             Type strategyType)
         {
-            var strategy = ChangeStrategyFactory.GetChangeStrategy(changeStrategyType, null!, new NullLoggerFactory());
+            var strategy = ChangeStrategyFactory.GetChangeStrategy(changeStrategyType, null!);
 
             strategy
                 .GetType()
@@ -166,7 +166,7 @@ namespace CorrectChange.Tests.Services.Change.Strategies
             // The currency denomination config is a suppressed null in this case cos it ought to just error
             // before passing on to some concrete strategy implementation
             Action act = () =>
-                ChangeStrategyFactory.GetChangeStrategy(changeStrategyType, null!, new NullLoggerFactory());
+                ChangeStrategyFactory.GetChangeStrategy(changeStrategyType, null!);
 
             act
                 .Should()

@@ -16,23 +16,8 @@
         Euro,
 
         /// <summary>
-        ///     US Dollars
-        /// </summary>
-        UnitedStatesDollar,
-
-        /// <summary>
-        ///     Australian dollars
-        /// </summary>
-        AustraliaDollar,
-
-        /// <summary>
-        ///     Japanese Yen
-        /// </summary>
-        JapanYen,
-
-        /// <summary>
         ///     Chinese Yuan Renminbi
         /// </summary>
-        ChinaRenminbi
+        ChinaYuanRenminbi
     }
 }

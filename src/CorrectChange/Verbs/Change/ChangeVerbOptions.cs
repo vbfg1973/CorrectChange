@@ -33,7 +33,7 @@ namespace CorrectChange.Verbs.Change
         ///     The change calculating algorithm to use
         /// </summary>
         [Option('s', nameof(ChangeStrategy), HelpText = "The change calculating algorithm to use",
-            Default = ChangeStrategyType.Greedy)]
+            Default = ChangeStrategyType.GreedyNotes)]
         public ChangeStrategyType ChangeStrategy { get; set; }
     }
 }

@@ -16,16 +16,15 @@ namespace CorrectChange.Domain.Services.ChangeCalculator
         /// </summary>
         /// <param name="changeStrategyType"></param>
         /// <param name="currencyDenominationsConfig"></param>
-        /// <param name="loggerFactory"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static IChangeStrategy GetChangeStrategy(ChangeStrategyType changeStrategyType,
-            CurrencyDenominationsConfig currencyDenominationsConfig, ILoggerFactory loggerFactory)
+            CurrencyDenominationsConfig currencyDenominationsConfig)
         {
             return changeStrategyType switch
             {
-                ChangeStrategyType.Greedy => new GreedyChangeStrategy(currencyDenominationsConfig),
-                ChangeStrategyType.GreedyWithPreferenceForNotes => new GreedyChangeStrategy(currencyDenominationsConfig),
+                ChangeStrategyType.GreedyNotes => new GreedyPreferNotesChangeStrategy(currencyDenominationsConfig),
+                ChangeStrategyType.GreedyCoins => new GreedyPreferCoinsChangeStrategy(currencyDenominationsConfig),
                 _ => throw new UnsupportedChangeStrategyException(nameof(changeStrategyType), changeStrategyType, null)
             };
         }

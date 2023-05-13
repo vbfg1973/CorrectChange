@@ -14,7 +14,6 @@ namespace CorrectChange.Domain.Services.ChangeCalculator.ChangeStrategies.Implem
         ///     ctor
         /// </summary>
         /// <param name="currencyDenominationsConfig"></param>
-        /// <param name="loggerFactory"></param>
         public GreedyPreferCoinsChangeStrategy(CurrencyDenominationsConfig currencyDenominationsConfig) : base(
             currencyDenominationsConfig)
         {

@@ -39,7 +39,7 @@ namespace CorrectChange.Domain.Services.ChangeCalculator
         /// <param name="changeStrategyType"></param>
         /// <returns></returns>
         public IList<DenominationQuantity> CalculateChange(decimal price, decimal paymentReceived,
-            Currency currency = Currency.Sterling, ChangeStrategyType changeStrategyType = ChangeStrategyType.Greedy)
+            Currency currency = Currency.Sterling, ChangeStrategyType changeStrategyType = ChangeStrategyType.GreedyNotes)
         {
             _logger.LogDebug("{Message} {Price} {PaymentReceived} {Currency}",
                 LogFmt.Message("Attempting to calculate change"),
@@ -52,7 +52,7 @@ namespace CorrectChange.Domain.Services.ChangeCalculator
                 throw new UnknownCurrencyException($"Currency {currency.ToString()} is not defined in configuration");
 
             var c = _appSettings.Currencies.First(curr => curr.Currency == currency);
-            var changeStrategy = ChangeStrategyFactory.GetChangeStrategy(changeStrategyType, c, _loggerFactory);
+            var changeStrategy = ChangeStrategyFactory.GetChangeStrategy(changeStrategyType, c);
 
             var results = changeStrategy.CalculateChange(price, paymentReceived).ToList();
 

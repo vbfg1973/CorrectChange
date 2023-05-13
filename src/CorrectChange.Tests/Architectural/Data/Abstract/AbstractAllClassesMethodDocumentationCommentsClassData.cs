@@ -6,7 +6,7 @@ namespace CorrectChange.Tests.Architectural.Data.Abstract
 {
     public abstract class AbstractAllClassesMethodDocumentationCommentsClassData : IEnumerable<object[]>
     {
-        protected Assembly Assembly;
+        protected Assembly? Assembly;
 
         public IEnumerator<object[]> GetEnumerator()
         {
