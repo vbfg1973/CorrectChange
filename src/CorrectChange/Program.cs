@@ -1,4 +1,8 @@
-﻿using CorrectChange.Domain.Config;
+﻿using CommandLine;
+using CorrectChange.Domain.Config;
+using CorrectChange.Domain.Services.ChangeCalculator;
+using CorrectChange.Domain.Services.ChangeCalculator.Abstract;
+using CorrectChange.Verbs.Change;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
@@ -21,6 +25,27 @@ namespace CorrectChange
         /// </summary>
         public static void Main(string[] args)
         {
+            BuildConfiguration();
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom
+                .Configuration(_sConfiguration!)
+                .CreateLogger();
+            ConfigureServices();
+
+            Parser.Default
+                .ParseArguments<
+                    ChangeOptions
+
+                    // With other features other options for different verbs would be listed here...
+                >(args)
+                .WithParsed(options =>
+                {
+                    var verb = _sServiceProvider?.GetService<ChangeVerb>();
+                    verb?.Run(options);
+                })
+
+                // And there would be near identical WithParsed calls pulling the correct verb out of the DI container.
+                ;
         }
 
         /// <summary>
@@ -46,6 +71,12 @@ namespace CorrectChange
                 .Build();
         }
 
+        /// <summary>
+        ///     Map the extracted environment variable to something useful here. This is used to turn "developer" environment
+        ///     variables into something we can use to read and parse the correct appsettings.environment.json with. More useful in
+        ///     a deployed service like an API or worker process than a CLI app like this
+        /// </summary>
+        /// <returns></returns>
         private static string GetEnvironmentName()
         {
             var environmentName = GetRawEnvironmentName();
@@ -79,10 +110,12 @@ namespace CorrectChange
 
             _sServiceCollection.AddLogging(configure => configure.AddSerilog());
 
+            _sServiceCollection.AddSingleton(appSettings);
+            _sServiceCollection.AddTransient<IChangeCalculatorService, ChangeCalculatorService>();
+
             #region Verbs
 
-            // _sServiceCollection
-            //     .AddTransient<>;
+            _sServiceCollection.AddTransient<ChangeVerb>();
 
             #endregion
 
