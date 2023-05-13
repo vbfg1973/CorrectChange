@@ -8,13 +8,13 @@ namespace CorrectChange.Tests.Architectural.Data
     /// <summary>
     ///     Uses reflection to return classes, properties and their XML documentation
     /// </summary>
-    public class AllClassesMethodDocumentationCommentsClassData : IEnumerable<object[]>
+    public class AllDomainClassesMethodDocumentationCommentsClassData : IEnumerable<object[]>
     {
         private readonly Assembly _assembly;
 
-        public AllClassesMethodDocumentationCommentsClassData()
+        public AllDomainClassesMethodDocumentationCommentsClassData()
         {
-            // Get the domain assembly
+            // Get the appropriate assembly and XML documentation
             _assembly = DomainAssemblyReference.Assembly;
             _assembly.LoadXmlDocumentation();
         }

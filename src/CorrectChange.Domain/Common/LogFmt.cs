@@ -1,4 +1,5 @@
 ﻿using CorrectChange.Domain.Models;
+using CorrectChange.Domain.Services.ChangeCalculator.ChangeStrategies;
 
 namespace CorrectChange.Domain.Common
 {
@@ -11,6 +12,7 @@ namespace CorrectChange.Domain.Common
         private const string PriceTag = "Price";
         private const string PaymentReceivedTag = "PaymentReceived";
         private const string CurrencyTag = "Currency";
+        private const string ChangeAlgorithmTag = "ChangeAlgorithm";
 
         /// <summary>
         ///     Tags log messages
@@ -50,6 +52,16 @@ namespace CorrectChange.Domain.Common
         public static string Price(decimal price)
         {
             return $"{PriceTag}={price}";
+        }
+
+        /// <summary>
+        ///     Tags change algorithm
+        /// </summary>
+        /// <param name="changeStrategyType"></param>
+        /// <returns></returns>
+        public static string ChangeAlgorithm(ChangeStrategyType changeStrategyType)
+        {
+            return $"{ChangeAlgorithmTag}={changeStrategyType}";
         }
     }
 }

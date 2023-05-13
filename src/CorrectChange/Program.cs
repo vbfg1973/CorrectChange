@@ -34,13 +34,13 @@ namespace CorrectChange
 
             Parser.Default
                 .ParseArguments<
-                    ChangeOptions
+                    ChangeVerbOptions
 
                     // With other features other options for different verbs would be listed here...
                 >(args)
                 .WithParsed(options =>
                 {
-                    var verb = _sServiceProvider?.GetService<ChangeVerb>();
+                    var verb = _sServiceProvider?.GetService<IChangeVerb>();
                     verb?.Run(options);
                 })
 
@@ -115,7 +115,7 @@ namespace CorrectChange
 
             #region Verbs
 
-            _sServiceCollection.AddTransient<ChangeVerb>();
+            _sServiceCollection.AddTransient<IChangeVerb, ChangeVerb>();
 
             #endregion
 

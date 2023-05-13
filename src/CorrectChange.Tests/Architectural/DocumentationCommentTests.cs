@@ -16,7 +16,8 @@ namespace CorrectChange.Tests.Architectural
         /// <param name="ns"></param>
         /// <param name="xmlDocumentation"></param>
         [Theory]
-        [ClassData(typeof(AllClassesHaveDocumentationCommentsClassData))]
+        [ClassData(typeof(AllDomainClassesHaveDocumentationCommentsClassData))]
+        [ClassData(typeof(AllCliClassesHaveDocumentationCommentsClassData))]
         public void All_Classes_Have_Documentation_Comments(string typeName, string ns, string xmlDocumentation)
         {
             xmlDocumentation
@@ -36,7 +37,8 @@ namespace CorrectChange.Tests.Architectural
         /// <param name="propertyName"></param>
         /// <param name="xmlDocumentation"></param>
         [Theory]
-        [ClassData(typeof(AllClassesPropertyDocumentationCommentsClassData))]
+        [ClassData(typeof(AllCliClassesPropertyDocumentationCommentsClassData))]
+        [ClassData(typeof(AllDomainClassesPropertyDocumentationCommentsClassData))]
         public void All_Class_Properties_Have_Documentation_Comments(string typeName, string propertyName, string ns,
             string xmlDocumentation)
         {
@@ -57,7 +59,8 @@ namespace CorrectChange.Tests.Architectural
         /// <param name="methodName"></param>
         /// <param name="xmlDocumentation"></param>
         [Theory]
-        [ClassData(typeof(AllClassesMethodDocumentationCommentsClassData))]
+        [ClassData(typeof(AllCliClassesMethodDocumentationCommentsClassData))]
+        [ClassData(typeof(AllDomainClassesMethodDocumentationCommentsClassData))]
         public void All_Class_Methods_Have_Documentation_Comments(string typeName, string methodName, string ns,
             string xmlDocumentation)
         {

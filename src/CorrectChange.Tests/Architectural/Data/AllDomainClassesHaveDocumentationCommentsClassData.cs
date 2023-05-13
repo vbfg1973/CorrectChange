@@ -8,13 +8,13 @@ namespace CorrectChange.Tests.Architectural.Data
     /// <summary>
     ///     Finds all classes in DomainAssembly and returns documentation comments found in XML for each
     /// </summary>
-    public class AllClassesHaveDocumentationCommentsClassData : IEnumerable<object[]>
+    public class AllDomainClassesHaveDocumentationCommentsClassData : IEnumerable<object[]>
     {
         private readonly Assembly _assembly;
 
-        public AllClassesHaveDocumentationCommentsClassData()
+        public AllDomainClassesHaveDocumentationCommentsClassData()
         {
-            // Get the domain assembly
+            // Get the appropriate assembly and XML documentation
             _assembly = DomainAssemblyReference.Assembly;
             _assembly.LoadXmlDocumentation();
         }
@@ -25,7 +25,6 @@ namespace CorrectChange.Tests.Architectural.Data
             var types = _assembly
                 .GetExportedTypes();
 
-            // Limit to those ending with Dto
             foreach (var type in types)
                 yield return new object[]
                 {

@@ -1,6 +1,6 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Reflection;
-using CorrectChange.Domain.Support;
+using CorrectChange.Support;
 using Towel;
 
 namespace CorrectChange.Tests.Architectural.Data
@@ -8,14 +8,14 @@ namespace CorrectChange.Tests.Architectural.Data
     /// <summary>
     ///     Uses reflection to return classes, properties and their XML documentation
     /// </summary>
-    public class AllClassesPropertyDocumentationCommentsClassData : IEnumerable<object[]>
+    public class AllCliClassesPropertyDocumentationCommentsClassData : IEnumerable<object[]>
     {
         private readonly Assembly _assembly;
 
-        public AllClassesPropertyDocumentationCommentsClassData()
+        public AllCliClassesPropertyDocumentationCommentsClassData()
         {
-            // Get the domain assembly
-            _assembly = DomainAssemblyReference.Assembly;
+            // Get the appropriate assembly and XML documentation
+            _assembly = CliAssemblyReference.Assembly;
             _assembly.LoadXmlDocumentation();
         }
 
