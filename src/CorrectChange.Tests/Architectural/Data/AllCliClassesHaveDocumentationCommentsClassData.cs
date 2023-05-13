@@ -1,4 +1,4 @@
-using CorrectChange.Domain.Support;
+using CorrectChange.Support;
 using CorrectChange.Tests.Architectural.Data.Abstract;
 
 namespace CorrectChange.Tests.Architectural.Data
@@ -7,7 +7,7 @@ namespace CorrectChange.Tests.Architectural.Data
     {
         public AllCliClassesHaveDocumentationCommentsClassData()
         {
-            Assembly = DomainAssemblyReference.Assembly;
+            Assembly = CliAssemblyReference.Assembly;
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using CorrectChange.Domain.Support;
-using CorrectChange.Support;
+using CorrectChange.Domain.Support;
 using CorrectChange.Tests.Architectural.Data.Abstract;
 
 namespace CorrectChange.Tests.Architectural.Data
@@ -8,12 +7,13 @@ namespace CorrectChange.Tests.Architectural.Data
     ///     Uses reflection to return classes, properties and their XML documentation
     /// </summary>
     public class
-        AllCliClassesPropertyDocumentationCommentsClassData : AbstractAllClassesPropertyDocumentationCommentsClassData
+        AllDomainClassesPropertyDocumentationCommentsClassData :
+            AbstractAllClassesPropertyDocumentationCommentsClassData
     {
-        public AllCliClassesPropertyDocumentationCommentsClassData()
+        public AllDomainClassesPropertyDocumentationCommentsClassData()
         {
             // Get the appropriate assembly and XML documentation
-            Assembly = CliAssemblyReference.Assembly;
+            Assembly = DomainAssemblyReference.Assembly;
         }
     }
 }
