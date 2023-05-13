@@ -6,6 +6,11 @@
     public enum ChangeStrategyType
     {
         /// <summary>
+        ///     An unknown strategy, included here for exception testing
+        /// </summary>
+        Default,
+
+        /// <summary>
         ///     The greedy strategy. Tries to give larger denominations first
         /// </summary>
         Greedy,

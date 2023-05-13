@@ -92,5 +92,20 @@ namespace CorrectChange.Tests.Services.Change.Strategies
                 .Should()
                 .Be(strategyType);
         }
+        
+        /// <summary>
+        ///     Ensures the change strategy factory throws on an unknown strategy
+        /// </summary>
+        /// <param name="changeStrategyType"></param>
+        [Theory]
+        [InlineData(ChangeStrategyType.Default)]
+        public void Given_Unsupported_Strategy_Type_Ensure_Factory_Throws(ChangeStrategyType changeStrategyType)
+        {
+            Action act = () => ChangeStrategyFactory.GetChangeStrategy(changeStrategyType, null!, new NullLoggerFactory());
+
+            act
+                .Should()
+                .Throw<UnsupportedChangeStrategyException>();
+        }
     }
 }

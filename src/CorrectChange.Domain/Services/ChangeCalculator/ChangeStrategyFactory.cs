@@ -27,7 +27,7 @@ namespace CorrectChange.Domain.Services.ChangeCalculator
                 ChangeStrategyType.Greedy => new GreedyChangeStrategy(currencyDenominationsConfig, loggerFactory),
                 ChangeStrategyType.GreedyWithPreferenceForNotes => new GreedyPreferNotesChangeStrategy(
                     currencyDenominationsConfig, loggerFactory),
-                _ => throw new ArgumentOutOfRangeException(nameof(changeStrategyType), changeStrategyType, null)
+                _ => throw new UnsupportedChangeStrategyException(nameof(changeStrategyType), changeStrategyType, null)
             };
         }
     }
