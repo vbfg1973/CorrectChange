@@ -24,9 +24,8 @@ namespace CorrectChange.Domain.Services.ChangeCalculator
         {
             return changeStrategyType switch
             {
-                ChangeStrategyType.Greedy => new GreedyChangeStrategy(currencyDenominationsConfig, loggerFactory),
-                ChangeStrategyType.GreedyWithPreferenceForNotes => new GreedyPreferNotesChangeStrategy(
-                    currencyDenominationsConfig, loggerFactory),
+                ChangeStrategyType.Greedy => new GreedyChangeStrategy(currencyDenominationsConfig),
+                ChangeStrategyType.GreedyWithPreferenceForNotes => new GreedyChangeStrategy(currencyDenominationsConfig),
                 _ => throw new UnsupportedChangeStrategyException(nameof(changeStrategyType), changeStrategyType, null)
             };
         }

@@ -1,32 +1,26 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Reflection;
-using CorrectChange.Domain.Support;
 using Towel;
 
-namespace CorrectChange.Tests.Architectural.Data
+namespace CorrectChange.Tests.Architectural.Data.Abstract
 {
     /// <summary>
     ///     Uses reflection to return classes, properties and their XML documentation
     /// </summary>
-    public class AllDomainClassesPropertyDocumentationCommentsClassData : IEnumerable<object[]>
+    public abstract class AbstractAllClassesPropertyDocumentationCommentsClassData : IEnumerable<object[]>
     {
-        private readonly Assembly _assembly;
-
-        public AllDomainClassesPropertyDocumentationCommentsClassData()
-        {
-            // Get the appropriate assembly and XML documentation
-            _assembly = DomainAssemblyReference.Assembly;
-            _assembly.LoadXmlDocumentation();
-        }
+        protected Assembly? Assembly;
 
         public IEnumerator<object[]> GetEnumerator()
         {
+            Assembly?.LoadXmlDocumentation();
+
             // Grab types from assembly 
-            var types = _assembly
+            var types = Assembly?
                 .GetExportedTypes();
 
             // Limit to classes that are not exceptions (many internal public properties beyond our control)
-            foreach (var type in types.Where(t =>
+            foreach (var type in types!.Where(t =>
                          !t.IsAssignableFrom(typeof(Exception)) && !t.Name.EndsWith("Exception")))
             {
                 var properties = type.GetProperties();

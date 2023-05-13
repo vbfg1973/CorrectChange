@@ -1,6 +1,7 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Reflection;
-using CorrectChange.Support;
+using CorrectChange.Domain.Support;
+using CorrectChange.Tests.Architectural.Data.Abstract;
 using Towel;
 
 namespace CorrectChange.Tests.Architectural.Data
@@ -8,44 +9,24 @@ namespace CorrectChange.Tests.Architectural.Data
     /// <summary>
     ///     Uses reflection to return classes, properties and their XML documentation
     /// </summary>
-    public class AllCliClassesPropertyDocumentationCommentsClassData : IEnumerable<object[]>
+    public class AllDomainClassesPropertyDocumentationCommentsClassData : AbstractAllClassesPropertyDocumentationCommentsClassData
     {
-        private readonly Assembly _assembly;
-
+        public AllDomainClassesPropertyDocumentationCommentsClassData()
+        {
+            // Get the appropriate assembly and XML documentation
+            Assembly = DomainAssemblyReference.Assembly;
+        }
+    }
+    
+    /// <summary>
+    ///     Uses reflection to return classes, properties and their XML documentation
+    /// </summary>
+    public class AllCliClassesPropertyDocumentationCommentsClassData : AbstractAllClassesPropertyDocumentationCommentsClassData
+    {
         public AllCliClassesPropertyDocumentationCommentsClassData()
         {
             // Get the appropriate assembly and XML documentation
-            _assembly = CliAssemblyReference.Assembly;
-            _assembly.LoadXmlDocumentation();
-        }
-
-        public IEnumerator<object[]> GetEnumerator()
-        {
-            // Grab types from assembly 
-            var types = _assembly
-                .GetExportedTypes();
-
-            // Limit to classes that are not exceptions (many internal public properties beyond our control)
-            foreach (var type in types.Where(t =>
-                         !t.IsAssignableFrom(typeof(Exception)) && !t.Name.EndsWith("Exception")))
-            {
-                var properties = type.GetProperties();
-
-                // Typename, property and any documentation comment Towel finds 
-                foreach (var propertyInfo in properties)
-                    yield return new object[]
-                    {
-                        type.Name,
-                        propertyInfo.Name,
-                        type.Namespace ?? string.Empty,
-                        propertyInfo.GetDocumentation()?.Trim()!
-                    };
-            }
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
+            Assembly = DomainAssemblyReference.Assembly;
         }
     }
 }

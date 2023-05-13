@@ -42,7 +42,7 @@ namespace CorrectChange.Tests.Services.Change.Strategies
 
             #endregion
 
-            var strategy = new GreedyChangeStrategy(currencyDenominationsConfig, new NullLoggerFactory());
+            var strategy = new GreedyChangeStrategy(currencyDenominationsConfig);
 
             var denominationQuantities = strategy.CalculateChange(price, paymentReceived).ToList();
 
@@ -66,7 +66,7 @@ namespace CorrectChange.Tests.Services.Change.Strategies
         [Theory]
         [ClassData(typeof(UkSterlingPricePaymentData))]
         [ClassData(typeof(EuroPricePaymentData))]
-        public void Given_Currency_Config_And_Strategy_Change_Is_Correct(decimal paymentReceived,
+        public void Given_Currency_Config_And_GreedyStrategy_Change_Is_Correct(decimal paymentReceived,
             decimal price, Currency currency, CurrencyDenominationsConfig currencyDenominationsConfig)
         {
             #region WarningSuppression
@@ -79,7 +79,49 @@ namespace CorrectChange.Tests.Services.Change.Strategies
 
             #endregion
 
-            var strategy = new GreedyChangeStrategy(currencyDenominationsConfig, new NullLoggerFactory());
+            var strategy = new GreedyChangeStrategy(currencyDenominationsConfig);
+
+            var denominationQuantities = strategy.CalculateChange(price, paymentReceived).ToList();
+
+            // Total value of all change received
+            var changeValue = denominationQuantities
+                .Select(quantity => quantity.Denomination.Value * quantity.Quantity)
+                .Sum();
+
+            // All change + price should == payment received
+            (changeValue + price)
+                .Should()
+                .Be(paymentReceived);
+        }
+
+        /// <summary>
+        ///     Ensure value of all change + price == paymentReceived
+        /// </summary>
+        /// <remarks>
+        ///     Currency is not used in the test but is in the method signature for context when
+        ///     reading test runner output
+        /// </remarks>
+        /// <param name="paymentReceived"></param>
+        /// <param name="price"></param>
+        /// <param name="currency"></param>
+        /// <param name="currencyDenominationsConfig"></param>
+        [Theory]
+        [ClassData(typeof(UkSterlingPricePaymentData))]
+        [ClassData(typeof(EuroPricePaymentData))]
+        public void Given_Currency_Config_And_GreedyStrategyNotes_Change_Is_Correct(decimal paymentReceived,
+            decimal price, Currency currency, CurrencyDenominationsConfig currencyDenominationsConfig)
+        {
+            #region WarningSuppression
+
+            // suppress unused warning from xunit and resulting self assignment warning.
+            // Normally dangerous and to be heeded, but in this case only present for context in the test runner.
+#pragma warning disable CS1717
+            currency = currency;
+#pragma warning restore CS1717
+
+            #endregion
+
+            var strategy = new GreedyPreferCoinsChangeStrategy(currencyDenominationsConfig);
 
             var denominationQuantities = strategy.CalculateChange(price, paymentReceived).ToList();
 
@@ -101,7 +143,7 @@ namespace CorrectChange.Tests.Services.Change.Strategies
         /// <param name="strategyType"></param>
         [Theory]
         [InlineData(ChangeStrategyType.Greedy, typeof(GreedyChangeStrategy))]
-        [InlineData(ChangeStrategyType.GreedyWithPreferenceForNotes, typeof(GreedyPreferNotesChangeStrategy))]
+        [InlineData(ChangeStrategyType.GreedyWithPreferenceForNotes, typeof(GreedyChangeStrategy))]
         public void Given_Strategy_Type_Ensure_Factory_Creates_Correct_Strategy(ChangeStrategyType changeStrategyType,
             Type strategyType)
         {
