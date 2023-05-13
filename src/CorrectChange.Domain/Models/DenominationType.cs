@@ -5,7 +5,14 @@ namespace CorrectChange.Domain.Models
     /// </summary>
     public enum DenominationType
     {
+        /// <summary>
+        ///     This denomination is a coin
+        /// </summary>
         Coin,
+
+        /// <summary>
+        ///     This denomination is a note
+        /// </summary>
         Note
     }
 }

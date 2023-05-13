@@ -32,6 +32,16 @@ namespace CorrectChange.Tests.Services.Change.Strategies
             decimal price, int denominationCount, Currency currency,
             CurrencyDenominationsConfig currencyDenominationsConfig)
         {
+            #region WarningSuppression
+
+            // suppress unused warning from xunit and resulting self assignment warning.
+            // Normally dangerous and to be heeded, but in this case only present for context in the test runner.
+#pragma warning disable CS1717
+            currency = currency;
+#pragma warning restore CS1717
+
+            #endregion
+
             var strategy = new GreedyChangeStrategy(currencyDenominationsConfig, new NullLoggerFactory());
 
             var denominationQuantities = strategy.CalculateChange(price, paymentReceived).ToList();
@@ -59,6 +69,16 @@ namespace CorrectChange.Tests.Services.Change.Strategies
         public void Given_Currency_Config_And_Strategy_Change_Is_Correct(decimal paymentReceived,
             decimal price, Currency currency, CurrencyDenominationsConfig currencyDenominationsConfig)
         {
+            #region WarningSuppression
+
+            // suppress unused warning from xunit and resulting self assignment warning.
+            // Normally dangerous and to be heeded, but in this case only present for context in the test runner.
+#pragma warning disable CS1717
+            currency = currency;
+#pragma warning restore CS1717
+
+            #endregion
+
             var strategy = new GreedyChangeStrategy(currencyDenominationsConfig, new NullLoggerFactory());
 
             var denominationQuantities = strategy.CalculateChange(price, paymentReceived).ToList();
@@ -92,7 +112,7 @@ namespace CorrectChange.Tests.Services.Change.Strategies
                 .Should()
                 .Be(strategyType);
         }
-        
+
         /// <summary>
         ///     Ensures the change strategy factory throws on an unknown strategy
         /// </summary>
@@ -101,7 +121,10 @@ namespace CorrectChange.Tests.Services.Change.Strategies
         [InlineData(ChangeStrategyType.Default)]
         public void Given_Unsupported_Strategy_Type_Ensure_Factory_Throws(ChangeStrategyType changeStrategyType)
         {
-            Action act = () => ChangeStrategyFactory.GetChangeStrategy(changeStrategyType, null!, new NullLoggerFactory());
+            // The currency denomination config is a suppressed null in this case cos it ought to just error
+            // before passing on to some concrete strategy implementation
+            Action act = () =>
+                ChangeStrategyFactory.GetChangeStrategy(changeStrategyType, null!, new NullLoggerFactory());
 
             act
                 .Should()
