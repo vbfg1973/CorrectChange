@@ -17,6 +17,11 @@ namespace CorrectChange.Domain.Services.ChangeCalculator
         private readonly ILogger<ChangeCalculatorService> _logger;
         private readonly ILoggerFactory _loggerFactory;
 
+        /// <summary>
+        ///     ctor
+        /// </summary>
+        /// <param name="appSettings"></param>
+        /// <param name="loggerFactory"></param>
         public ChangeCalculatorService(AppSettings appSettings, ILoggerFactory loggerFactory)
         {
             _appSettings = appSettings;
