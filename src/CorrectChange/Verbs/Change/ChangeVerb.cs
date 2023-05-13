@@ -1,7 +1,9 @@
 ﻿using CorrectChange.Domain.Common;
 using CorrectChange.Domain.Extensions;
 using CorrectChange.Domain.Models;
+using CorrectChange.Domain.Services.ChangeCalculator;
 using CorrectChange.Domain.Services.ChangeCalculator.Abstract;
+using CorrectChange.Domain.Services.ChangeCalculator.Exceptions;
 using Microsoft.Extensions.Logging;
 
 namespace CorrectChange.Verbs.Change
@@ -31,20 +33,35 @@ namespace CorrectChange.Verbs.Change
         /// <param name="verbOptions"></param>
         public void Run(IChangeVerbOptions verbOptions)
         {
-            _logger.LogDebug("{Message} {Price} {PaymentReceived} {Currency}",
-                LogFmt.Message("Calculating change"),
-                LogFmt.Price(verbOptions.Price),
-                LogFmt.PaymentReceived(verbOptions.PaymentReceived),
-                LogFmt.Currency(verbOptions.Currency)
-            );
-            var changeDenominations = _changeCalculatorService.CalculateChange(
-                verbOptions.Price,
-                verbOptions.PaymentReceived,
-                verbOptions.Currency,
-                verbOptions.ChangeStrategy
-            ).ToList();
+            try
+            {
+                _logger.LogDebug("{Message} {Price} {PaymentReceived} {Currency}",
+                    LogFmt.Message("Calculating change"),
+                    LogFmt.Price(verbOptions.Price),
+                    LogFmt.PaymentReceived(verbOptions.PaymentReceived),
+                    LogFmt.Currency(verbOptions.Currency)
+                );
+                var changeDenominations = _changeCalculatorService.CalculateChange(
+                    verbOptions.Price,
+                    verbOptions.PaymentReceived,
+                    verbOptions.Currency,
+                    verbOptions.ChangeStrategy
+                ).ToList();
 
-            ShowOutput(verbOptions, changeDenominations);
+                ShowOutput(verbOptions, changeDenominations);
+            }
+
+            catch (UnsupportedChangeStrategyException)
+            {
+                _logger.LogError("{Message}",
+                    LogFmt.Message($"Request to use an unsupported change strategy: {verbOptions.ChangeStrategy}"));
+            }
+
+            catch (UnknownCurrencyException)
+            {
+                _logger.LogError("{Message}",
+                    LogFmt.Message($"Request to use a currency not defined in the configuration: {verbOptions.Currency}"));
+            }
         }
 
         /// <summary>

@@ -105,8 +105,8 @@ namespace CorrectChange.Tests.Common
         }
         
         [Theory]
-        [InlineData("ChangeAlgorithm", ChangeStrategyType.Greedy)]
-        [InlineData("ChangeAlgorithm", ChangeStrategyType.GreedyWithPreferenceForNotes)]
+        [InlineData("ChangeAlgorithm", ChangeStrategyType.GreedyNotes)]
+        [InlineData("ChangeAlgorithm", ChangeStrategyType.GreedyCoins)]
         public void Given_ChangeAlgorithm_String_Is_Correct(string tag, ChangeStrategyType changeStrategyType)
         {
             var output = LogFmt.ChangeAlgorithm(changeStrategyType);

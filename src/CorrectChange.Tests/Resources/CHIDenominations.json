@@ -1,0 +1,70 @@
+{
+  "CurrencyName": "Chinese Yuan",
+  "Currency": "ChinaYuanRenminbi",
+  "Denominations": [
+    {
+      "Value": 0.01,
+      "DenominationType": "Coin"
+    },
+    {
+      "Value": 0.02,
+      "DenominationType": "Coin"
+    },
+    {
+      "Value": 0.05,
+      "DenominationType": "Coin"
+    },
+    {
+      "Value": 0.1,
+      "DenominationType": "Coin"
+    },
+    {
+      "Value": 0.5,
+      "DenominationType": "Coin"
+    },
+    {
+      "Value": 1,
+      "DenominationType": "Coin"
+    },
+    {
+      "Value": 0.1,
+      "DenominationType": "Note"
+    },
+    {
+      "Value": 0.2,
+      "DenominationType": "Note"
+    },
+    {
+      "Value": 0.5,
+      "DenominationType": "Note"
+    },
+    {
+      "Value": 1,
+      "DenominationType": "Note"
+    },
+    {
+      "Value": 2,
+      "DenominationType": "Note"
+    },
+    {
+      "Value": 5,
+      "DenominationType": "Note"
+    },
+    {
+      "Value": 10,
+      "DenominationType": "Note"
+    },
+    {
+      "Value": 20,
+      "DenominationType": "Note"
+    },
+    {
+      "Value": 50,
+      "DenominationType": "Note"
+    },
+    {
+      "Value": 100,
+      "DenominationType": "Note"
+    }
+  ]
+}
