@@ -143,7 +143,7 @@ namespace CorrectChange.Tests.Services.Change.Strategies
         /// <param name="strategyType"></param>
         [Theory]
         [InlineData(ChangeStrategyType.GreedyNotes, typeof(GreedyPreferNotesChangeStrategy))]
-        [InlineData(ChangeStrategyType.GreedyCoins, typeof(GreedyPreferNotesChangeStrategy))]
+        [InlineData(ChangeStrategyType.GreedyCoins, typeof(GreedyPreferCoinsChangeStrategy))]
         public void Given_Strategy_Type_Ensure_Factory_Creates_Correct_Strategy(ChangeStrategyType changeStrategyType,
             Type strategyType)
         {
